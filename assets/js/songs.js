@@ -11,4 +11,4 @@ const songs = [
   { title: "Thriller", artist: "Michael Jackson", year: 1982 },
 ];
 
-export { songs };
+export default songs;

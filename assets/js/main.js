@@ -1,4 +1,4 @@
-import { songs } from "./songs.js";
+import songs from "./songs.js";
 
 /*
 Exercises
@@ -60,32 +60,34 @@ console.log("////////////////////////////////////////////////////");
 7. Use the map function and template literals to create a new array with strings in the format "Title - Artist (Year)" for each song.
 */
 
-const anotherFormat = songs.map(function (obj) {
-  const generateAnotherFormat = [];
-  generateAnotherFormat.push(
-    obj.title + " - " + obj.artist + "(" + obj.year + ")"
-  );
-  return generateAnotherFormat;
-});
-console.log("Ex 7: " + anotherFormat);
+const songsIntoString = songs.map(
+  ({ title, artist, year }) => `${title} - ${artist} (${year})`
+);
+
+console.log("Ex 7: " + songsIntoString);
 console.log("////////////////////////////////////////////////////");
 /*
 8. Use destructuring and the filter function to create a new array with the titles of all the songs by The Beatles.
 
 */
-const beatlesSongs = songs.filter((song) => song.artist === "The Beatles");
-console.log("Ex 8: " + JSON.stringify(beatlesSongs));
-console.log("No me queda claro dónde usar destructuring");
+const beatlesSongs = songs
+  .filter(({ artist }) => artist === "The Beatles")
+  .map(({ title }) => title);
+console.log("Ex 8: " + beatlesSongs);
 console.log("////////////////////////////////////////////////////");
 /*
 9. Use arrow functions and the reduce function to calculate the total number of years between all the songs' release dates. (Tip: Use reduce)
 */
-console.log("Ex 9: ");
+const totalYears = songs.reduce((acc, curr) => acc + curr.year, 0);
+console.log("Ex 9: " + totalYears);
 console.log("////////////////////////////////////////////////////");
 /*
 10. Create a module that exports a function to calculate the average release year of the songs in the input array. (Tip: Use reduce.)
 */
-console.log("Ex 10: ");
+
+import averageYears from "./utils.js";
+
+console.log("Ex 10: " + averageYears);
 console.log("////////////////////////////////////////////////////");
 /*
 11. Use the find function to get the object representing the song with the longest title.
